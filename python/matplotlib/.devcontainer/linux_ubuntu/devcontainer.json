@@ -1,0 +1,25 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/devcontainers/templates/tree/main/src/python
+{
+  "name": "Python - matplotlib",
+  "build": { "dockerfile": "Dockerfile" },
+  "privileged": true,
+  "containerEnv": {
+    "DISPLAY": "unix: 0"
+  },
+  "runArgs": [
+    "--name",
+    "${localEnv:USER}_python_matplotlib",
+    "--security-opt",
+    "seccomp=unconfined",
+    // Graphical display
+    "--network=host",
+    "--volume=/tmp/.X11-unix:/tmp/.X11-unix:rw",
+    "--env=DISPLAY=${env:DISPLAY}"
+  ],
+  "customizations": {
+    "vscode": {
+      "extensions": ["ms-python.python", "ms-azuretools.vscode-docker"]
+    }
+  }
+}
